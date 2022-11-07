@@ -1,8 +1,3 @@
-import { FormControl, FormGroup } from "@angular/forms";
-(() => {
-  console.log("loading Ts success...");
-})();
-
 const taipeiArea = [
   {
     value: "中正區",
@@ -132,13 +127,11 @@ const newTaipeiArea = [
   },
 ];
 export const cityChange = (
-  form: FormGroup,
-  obj: {
-    areas: { value: string }[];
-  }
+  form,
+  obj
 ) => {
-  const city = form.get("city") as FormControl;
-  const area = form.get("area") as FormControl;
+  const city = form.get("city");
+  const area = form.get("area");
   city.valueChanges.subscribe((city) => {
     area.setValue("");
     switch (city) {
