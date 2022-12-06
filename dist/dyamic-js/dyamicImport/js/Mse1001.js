@@ -1,3 +1,7 @@
+(() => {
+  console.log('loading Js success...')
+})()
+
 const taipeiArea = [
   {
     value: "中正區",
@@ -126,6 +130,7 @@ const newTaipeiArea = [
     value: "貢寮區",
   },
 ];
+
 export const cityChange = (
   form,
   obj

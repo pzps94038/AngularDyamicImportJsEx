@@ -32,12 +32,15 @@ export class AppComponent implements OnInit {
     this.dyamicImportService
       .dyamicImport(`/dyamicImport/js/${progCode}.js`)
       .subscribe((res:any) => {
+        console.log('js匯入', res);
         res.cityChange(this.form, this.obj);
       });
     this.dyamicImportService.dyamicRequireTs(progCode).subscribe((res: any)=>{
-      console.log(res.cityChange);
+      console.log('tsRequire匯入', res);
+      res.cityChange(this.form, this.obj);
     });
     this.dyamicImportService.dyamicImportTs(progCode).subscribe((res: any) => {
+      console.log('tsImport匯入', res);
       res.cityChange(this.form, this.obj);
     });
   }

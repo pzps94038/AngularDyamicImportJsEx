@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { from, of } from "rxjs";
+import { from, Observable, of } from "rxjs";
 declare const dyamicImportJs: (path: string) => Promise<any>;
 @Injectable({
   providedIn: "root",
@@ -7,13 +7,13 @@ declare const dyamicImportJs: (path: string) => Promise<any>;
 export class DyamicImportService {
 
   dyamicImport<T = any>(path: string) {
-    return from(dyamicImportJs(path)) as T;
+    return from(dyamicImportJs(path)) as Observable<T>;
   }
 
-  dyamicImportTs<T = any>(progCode: string) {
+  dyamicImportTs(progCode: string) {
     switch (progCode) {
       case "Mse1001":
-        return from(import("./Mse1001/Mse1001")) as T;
+        return from(import("./Mse1001/Mse1001")) as Observable<any>;
       default:
         throw new Error("No Match ProgCode....");
     }
@@ -21,7 +21,7 @@ export class DyamicImportService {
 
   dyamicRequireTs<T = any>(progCode: string) {
     try{
-      return of(require(`./${progCode}/${progCode}.ts`)) as T;
+      return of(require(`./${progCode}/${progCode}.ts`)) as Observable<T>;
     }catch{
       throw new Error("No Match ProgCode....");
     }
