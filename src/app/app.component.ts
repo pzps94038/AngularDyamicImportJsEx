@@ -31,10 +31,13 @@ export class AppComponent implements OnInit {
     const progCode = "Mse1001";
     this.dyamicImportService
       .dyamicImport(`/dyamicImport/js/${progCode}.js`)
-      .subscribe((res) => {
+      .subscribe((res:any) => {
         res.cityChange(this.form, this.obj);
       });
-    this.dyamicImportService.dyamicImportTs(progCode).subscribe((res) => {
+    this.dyamicImportService.dyamicRequireTs(progCode).subscribe((res: any)=>{
+      console.log(res.cityChange);
+    });
+    this.dyamicImportService.dyamicImportTs(progCode).subscribe((res: any) => {
       res.cityChange(this.form, this.obj);
     });
   }
